@@ -1,10 +1,12 @@
+package br.ufsc.vsschweitzer.thesis.environment;
+
 import jason.asSyntax.*;
 import jason.environment.*;
 import java.util.logging.*;
 
-public class TestEnv extends Environment {
+public class SimpleEnvironment extends Environment {
 
-	private Logger logger = Logger.getLogger("testenv.mas2j." + TestEnv.class.getName());
+	private Logger logger = Logger.getLogger("tcpagent.mas2j." + SimpleEnvironment.class.getName());
 
 	/** Called before the MAS execution with the args informed in .mas2j */
 	@Override
