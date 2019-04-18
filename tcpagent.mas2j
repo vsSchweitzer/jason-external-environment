@@ -1,0 +1,12 @@
+MAS tcpagent {
+
+	infrastructure: Centralised
+
+	environment: ExternalEnvironment
+
+	agents:
+		agent1 sample_agent;
+
+	aslSourcePath:
+		"src/asl";
+}
