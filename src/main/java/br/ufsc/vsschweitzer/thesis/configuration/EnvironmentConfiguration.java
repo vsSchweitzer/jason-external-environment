@@ -5,12 +5,18 @@ import java.util.regex.Pattern;
 
 public class EnvironmentConfiguration {
 
-	private static final int DEFAULT_PORT = 10000;
-	private static final String IP_ADDRESS_REGEX = "\\d{1,3}.\\d{1,3}.\\d{1,3}.\\d{1,3}"; // TODO verify regex
-	private static final String PORT_REGEX = "\\d{1,5}"; // TODO verify regex
+	private static final String DEFAULT_IP_ADDRESS = "localhost";
+	private static final String DEFAULT_PORT = "12345";
+	private static final String IP_ADDRESS_REGEX = "\\d{1,3}.\\d{1,3}.\\d{1,3}.\\d{1,3}";
+	private static final String PORT_REGEX = "\\d{1,5}";
 
 	private String ipAddress;
-	private int port = DEFAULT_PORT;
+	private int port;
+
+	public EnvironmentConfiguration() {
+		this.setIpAddress(DEFAULT_IP_ADDRESS);
+		this.setPort(DEFAULT_PORT);
+	}
 
 	public EnvironmentConfiguration(String ipAddress, String port) {
 		this.setIpAddress(ipAddress);
@@ -36,12 +42,14 @@ public class EnvironmentConfiguration {
 	}
 
 	private void verifyIpAddress(String ipAddress) {
-		verifyPattern(IP_ADDRESS_REGEX, ipAddress);
-		String[] octets = ipAddress.split(".");
-		for (String octet: octets) {
-			int octetAsInt = Integer.parseInt(octet);
-			if (octetAsInt < 0 || octetAsInt > 255) {
-				// TODO throw error
+		if (ipAddress != "localhost") {
+			verifyPattern(IP_ADDRESS_REGEX, ipAddress);
+			String[] octets = ipAddress.split(".");
+			for (String octet : octets) {
+				int octetAsInt = Integer.parseInt(octet);
+				if (octetAsInt < 0 || octetAsInt > 255) {
+					// TODO throw error
+				}
 			}
 		}
 	}
@@ -54,14 +62,16 @@ public class EnvironmentConfiguration {
 		}
 	}
 
-	private boolean verifyPattern(String regex, String data) {
+	private void verifyPattern(String regex, String data) {
 		// TODO verify PORT and ADDRESS regex
-		// TODO throw error when regex fails
 		Pattern pattern = Pattern.compile(regex);
 
 		Matcher matcher = pattern.matcher(data);
+		boolean correct = matcher.matches();
 		
-		return false;
+		if (!correct) {
+			// TODO throw error when regex fails
+		}
 	}
 
 }

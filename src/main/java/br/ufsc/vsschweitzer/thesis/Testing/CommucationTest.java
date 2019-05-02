@@ -2,6 +2,8 @@ package br.ufsc.vsschweitzer.thesis.Testing;
 
 import java.util.Scanner;
 
+import br.ufsc.vsschweitzer.thesis.configuration.ConfigurationReader;
+import br.ufsc.vsschweitzer.thesis.configuration.EnvironmentConfiguration;
 import br.ufsc.vsschweitzer.thesis.messaging.Messenger;
 
 public class CommucationTest {
@@ -10,6 +12,8 @@ public class CommucationTest {
 	static int port = 10000;
 
 	public static void main(String args[]) throws Exception {
+		EnvironmentConfiguration conf = ConfigurationReader.getConfiguration();
+		
 		Scanner scanner = new Scanner(System.in);
 
 		scanner.nextLine();
