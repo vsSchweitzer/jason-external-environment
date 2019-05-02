@@ -1,30 +1,42 @@
 package br.ufsc.vsschweitzer.thesis.messaging.message;
 
-import java.util.Map;
+import java.util.List;
 
-public class ActMessage {
+public class ActMessage extends MessageBase {
 	
-	MessageType type;
 	String agent;
 	String action;
-	Map<String, Object> params;
+	List<String> parameters;
 	
-	public ActMessage(MessageType type, String agent, String action) {
-		this.type = type;
+	public ActMessage(String agent, String action, List<String> parameters) {
+		super(MessageType.ACT);
 		this.agent = agent;
 		this.action = action;
-	}
-
-	public MessageType getType() {
-		return type;
+		this.parameters = parameters;
 	}
 	
 	public String getAgent() {
 		return agent;
 	}
+
+	public void setAgent(String agent) {
+		this.agent = agent;
+	}
 	
 	public String getAction() {
 		return action;
+	}
+
+	public void setAction(String action) {
+		this.action = action;
+	}
+
+	public List<String> getParameters() {
+		return parameters;
+	}
+
+	public void setParameters(List<String> parameters) {
+		this.parameters = parameters;
 	}
 	
 }
