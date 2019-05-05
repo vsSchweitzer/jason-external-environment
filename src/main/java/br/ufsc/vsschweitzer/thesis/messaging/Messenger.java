@@ -19,7 +19,7 @@ public class Messenger implements Closeable {
 
 	String ip;
 	int port;
-	
+
 	/**
 	 * Constructor for a messenger that can stabilish connections via TCP.
 	 *
@@ -84,10 +84,13 @@ public class Messenger implements Closeable {
 	 * Closes the connection with the server.
 	 *
 	 */
-	public void close() throws IOException {
+	public void close() {
 		if (isOpen) {
-			socket.close();
-			isOpen = false;
+			try {
+				socket.close();
+				isOpen = false;
+			} catch (IOException e) {
+			}
 		}
 	}
 

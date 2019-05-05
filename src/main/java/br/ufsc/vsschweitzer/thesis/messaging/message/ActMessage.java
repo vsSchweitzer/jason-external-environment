@@ -3,31 +3,31 @@ package br.ufsc.vsschweitzer.thesis.messaging.message;
 import java.util.List;
 
 public class ActMessage extends MessageBase {
-	
+
 	String agent;
 	String action;
 	List<String> parameters;
-	
+
 	public ActMessage(String agent, String action, List<String> parameters) {
 		super(MessageType.ACT);
-		this.agent = agent;
-		this.action = action;
-		this.parameters = parameters;
+		setAgent(agent);
+		setAction(action);
+		setParameters(parameters);
 	}
-	
+
 	public String getAgent() {
 		return agent;
 	}
 
-	public void setAgent(String agent) {
+	private void setAgent(String agent) {
 		this.agent = agent;
 	}
-	
+
 	public String getAction() {
 		return action;
 	}
 
-	public void setAction(String action) {
+	private void setAction(String action) {
 		this.action = action;
 	}
 
@@ -35,8 +35,8 @@ public class ActMessage extends MessageBase {
 		return parameters;
 	}
 
-	public void setParameters(List<String> parameters) {
+	private void setParameters(List<String> parameters) {
 		this.parameters = parameters;
 	}
-	
+
 }

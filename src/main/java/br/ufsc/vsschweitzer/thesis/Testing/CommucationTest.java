@@ -21,7 +21,7 @@ public class CommucationTest {
 		x.add("2");
 		x.add("3");
 		System.out.println(AgentMessageInterpreter.messageToJson(new ActMessage("ag1", "run", x)));
-		System.out.println(AgentMessageInterpreter.messageToJson(new ActResponseMessage()));
+		//System.out.println(AgentMessageInterpreter.messageToJson(new ActResponseMessage()));
 		
 /*
 		EnvironmentConfiguration conf = ConfigurationReader.getConfiguration();

@@ -1,6 +1,7 @@
 package br.ufsc.vsschweitzer.thesis.environment;
 
 import java.io.IOException;
+import java.util.List;
 
 import br.ufsc.vsschweitzer.thesis.configuration.ConfigurationReader;
 import br.ufsc.vsschweitzer.thesis.configuration.EnvironmentConfiguration;
@@ -9,6 +10,7 @@ import br.ufsc.vsschweitzer.thesis.exceptions.ConnectionNotOpenException;
 import br.ufsc.vsschweitzer.thesis.messaging.AgentMessageInterpreter;
 import br.ufsc.vsschweitzer.thesis.messaging.Messenger;
 import br.ufsc.vsschweitzer.thesis.messaging.message.ActMessage;
+import br.ufsc.vsschweitzer.thesis.messaging.message.ActResponseMessage;
 import jason.asSyntax.Structure;
 
 public class ExternalEnvironment {
@@ -31,7 +33,7 @@ public class ExternalEnvironment {
 		configuration = ConfigurationReader.getConfiguration();
 	}
 	
-	public void act(String agent, Structure action) throws FailedActionException {
+	public List<Structure> act(String agent, Structure action) throws FailedActionException {
 		Messenger messenger = new Messenger(configuration.getIpAddress(), configuration.getPort());
 		try {
 			ActMessage message = AgentMessageInterpreter.wrapAct(agent, action);
@@ -40,15 +42,13 @@ public class ExternalEnvironment {
 			messenger.open();
 			messenger.send(messageAsJson);
 			String response = messenger.listen();
-			AgentMessageInterpreter.interpretJsonMessage(response);
+			ActResponseMessage responseMsg = (ActResponseMessage) AgentMessageInterpreter.interpretJsonMessage(response);
+			// TODO determinar o que fazer com o status da mensagem de resposta.
+			return AgentMessageInterpreter.responsePerceptsToLiterals(responseMsg);
 		} catch (IOException | ConnectionNotOpenException e) {
 			throw new FailedActionException(e);
 		} finally {
-			try {
-				messenger.close();
-			} catch (IOException e) {
-				throw new FailedActionException(e);
-			}
+			messenger.close();
 		}
 	}
 }
