@@ -1,8 +1,10 @@
 package br.ufsc.vsschweitzer.thesis.environment.exceptions;
 
 public class FailedActionException extends Exception {
+	
+	private static final long serialVersionUID = 1L;
 
-    public FailedActionException() {
+	public FailedActionException() {
     }
 
     public FailedActionException(String message) {

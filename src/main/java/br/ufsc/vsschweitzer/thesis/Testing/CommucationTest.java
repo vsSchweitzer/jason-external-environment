@@ -1,10 +1,14 @@
 package br.ufsc.vsschweitzer.thesis.Testing;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import br.ufsc.vsschweitzer.thesis.configuration.ConfigurationReader;
 import br.ufsc.vsschweitzer.thesis.configuration.EnvironmentConfiguration;
+import br.ufsc.vsschweitzer.thesis.messaging.AgentMessageInterpreter;
 import br.ufsc.vsschweitzer.thesis.messaging.Messenger;
+import br.ufsc.vsschweitzer.thesis.messaging.message.ActMessage;
+import br.ufsc.vsschweitzer.thesis.messaging.message.ActResponseMessage;
 
 public class CommucationTest {
 
@@ -12,8 +16,16 @@ public class CommucationTest {
 	static int port = 10000;
 
 	public static void main(String args[]) throws Exception {
-		EnvironmentConfiguration conf = ConfigurationReader.getConfiguration();
+		ArrayList<String> x = new ArrayList<String>();
+		x.add("1");
+		x.add("2");
+		x.add("3");
+		System.out.println(AgentMessageInterpreter.messageToJson(new ActMessage("ag1", "run", x)));
+		System.out.println(AgentMessageInterpreter.messageToJson(new ActResponseMessage()));
 		
+/*
+		EnvironmentConfiguration conf = ConfigurationReader.getConfiguration();
+
 		Scanner scanner = new Scanner(System.in);
 
 		scanner.nextLine();
@@ -37,6 +49,7 @@ public class CommucationTest {
 		System.out.println("Messenger fechado");
 
 		scanner.close();
+		*/
 	}
 
 }

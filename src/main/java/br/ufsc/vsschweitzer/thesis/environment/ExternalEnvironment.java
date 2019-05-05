@@ -32,11 +32,11 @@ public class ExternalEnvironment {
 	}
 	
 	public void act(String agent, Structure action) throws FailedActionException {
-		ActMessage message = AgentMessageInterpreter.wrapAct(agent, action);
-		String messageAsJson = AgentMessageInterpreter.messageToJson(message);
-
 		Messenger messenger = new Messenger(configuration.getIpAddress(), configuration.getPort());
 		try {
+			ActMessage message = AgentMessageInterpreter.wrapAct(agent, action);
+			String messageAsJson = AgentMessageInterpreter.messageToJson(message);
+			
 			messenger.open();
 			messenger.send(messageAsJson);
 			String response = messenger.listen();

@@ -20,6 +20,7 @@ public class SimpleEnvironment extends Environment {
 
 	@Override
 	public boolean executeAction(String agName, Structure action) {
+		logger.info(agName + " executing: " + action);
 		try {
 			extEnvironment.act(agName, action);
 			// TODO add percepts based on act response

@@ -2,7 +2,7 @@ package br.ufsc.vsschweitzer.thesis.messaging.message;
 
 public abstract class MessageBase {
 	
-	static MessageType type;
+	MessageType type;
 	
 	public MessageBase(MessageType type) {
 		this.type = type;

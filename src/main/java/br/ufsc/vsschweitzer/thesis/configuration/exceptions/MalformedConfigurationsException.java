@@ -2,6 +2,8 @@ package br.ufsc.vsschweitzer.thesis.configuration.exceptions;
 
 public class MalformedConfigurationsException extends Exception {
 	
+	private static final long serialVersionUID = 1L;
+
 	public enum ErrorField {
 		IpAddress,
 		Port,
@@ -37,5 +39,5 @@ public class MalformedConfigurationsException extends Exception {
 	private void setField(ErrorField field) {
 		this.erroField = field;
 	}
-    
+
 }
