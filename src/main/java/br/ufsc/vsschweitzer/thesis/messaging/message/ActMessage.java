@@ -2,7 +2,7 @@ package br.ufsc.vsschweitzer.thesis.messaging.message;
 
 import java.util.List;
 
-public class ActMessage extends MessageBase {
+public class ActMessage extends BaseMessage {
 
 	String agent;
 	String action;

@@ -1,10 +1,10 @@
 package br.ufsc.vsschweitzer.thesis.messaging.message;
 
-public abstract class MessageBase {
+public abstract class BaseMessage {
 	
 	MessageType type;
 	
-	public MessageBase(MessageType type) {
+	public BaseMessage(MessageType type) {
 		this.type = type;
 	}
 

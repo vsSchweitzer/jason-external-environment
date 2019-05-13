@@ -3,7 +3,7 @@ package br.ufsc.vsschweitzer.thesis.messaging.message;
 import java.util.List;
 import java.util.Map;
 
-public class ActResponseMessage extends MessageBase {
+public class ActResponseMessage extends BaseMessage {
 
 	ActResponseStatus status;
 	Map<String, List<String>> percepts;

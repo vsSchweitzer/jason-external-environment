@@ -82,7 +82,6 @@ public class Messenger implements Closeable {
 
 	/**
 	 * Closes the connection with the server.
-	 *
 	 */
 	public void close() {
 		if (isOpen) {

@@ -10,7 +10,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import br.ufsc.vsschweitzer.thesis.messaging.message.ActMessage;
 import br.ufsc.vsschweitzer.thesis.messaging.message.ActResponseMessage;
-import br.ufsc.vsschweitzer.thesis.messaging.message.MessageBase;
+import br.ufsc.vsschweitzer.thesis.messaging.message.BaseMessage;
 import br.ufsc.vsschweitzer.thesis.messaging.message.MessageType;
 import jason.asSyntax.Atom;
 import jason.asSyntax.Structure;
@@ -22,11 +22,11 @@ public class AgentMessageInterpreter {
 
 	static ObjectMapper objectMapper = new ObjectMapper();
 
-	public static String messageToJson(MessageBase message) throws IOException {
+	public static String messageToJson(BaseMessage message) throws IOException {
 		return objectMapper.writeValueAsString(message);
 	}
 
-	public static MessageBase interpretJsonMessage(String message) throws IOException {
+	public static BaseMessage interpretJsonMessage(String message) throws IOException {
 		ObjectNode genericNode = objectMapper.readValue(message, ObjectNode.class);
 		MessageType type = MessageType.valueOf(genericNode.get(TYPE_FIELD).asText());
 

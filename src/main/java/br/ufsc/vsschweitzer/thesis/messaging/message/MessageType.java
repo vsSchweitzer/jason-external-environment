@@ -4,13 +4,13 @@ public enum MessageType {
 	ACT(ActMessage.class),
 	ACT_RESPONSE(ActResponseMessage.class);
 	
-	Class<? extends MessageBase> respectiveClass;
+	Class<? extends BaseMessage> respectiveClass;
 	
-	MessageType(Class<? extends MessageBase> respectiveClass) {
+	MessageType(Class<? extends BaseMessage> respectiveClass) {
 		this.respectiveClass = respectiveClass;
 	}
 	
-	public Class<? extends MessageBase> getRespectiveClass() {
+	public Class<? extends BaseMessage> getRespectiveClass() {
 		return respectiveClass;
 	}
 	
