@@ -1,14 +1,13 @@
 package br.ufsc.vsschweitzer.thesis.messaging.message;
 
 import java.util.List;
-import java.util.Map;
 
 public class ActResponseMessage extends BaseMessage {
 
 	ActResponseStatus status;
-	Map<String, List<String>> percepts;
+	List<Percept> percepts;
 	
-	public ActResponseMessage(ActResponseStatus status, Map<String, List<String>> percepts) {
+	public ActResponseMessage(ActResponseStatus status, List<Percept> percepts) {
 		super(MessageType.ACT_RESPONSE);
 		setStatus(status);
 		setPercepts(percepts);
@@ -22,11 +21,11 @@ public class ActResponseMessage extends BaseMessage {
 		this.status = status;
 	}
 
-	public Map<String, List<String>> getPercepts() {
+	public List<Percept> getPercepts() {
 		return percepts;
 	}
 
-	private void setPercepts(Map<String, List<String>> percepts) {
+	private void setPercepts(List<Percept> percepts) {
 		this.percepts = percepts;
 	}
 	
