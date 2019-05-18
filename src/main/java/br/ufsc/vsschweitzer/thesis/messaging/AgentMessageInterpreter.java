@@ -3,7 +3,6 @@ package br.ufsc.vsschweitzer.thesis.messaging;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -12,6 +11,7 @@ import br.ufsc.vsschweitzer.thesis.messaging.message.ActMessage;
 import br.ufsc.vsschweitzer.thesis.messaging.message.ActResponseMessage;
 import br.ufsc.vsschweitzer.thesis.messaging.message.BaseMessage;
 import br.ufsc.vsschweitzer.thesis.messaging.message.MessageType;
+import br.ufsc.vsschweitzer.thesis.messaging.message.Percept;
 import jason.asSyntax.Atom;
 import jason.asSyntax.Structure;
 import jason.asSyntax.Term;
@@ -45,9 +45,9 @@ public class AgentMessageInterpreter {
 
 	public static List<Structure> responsePerceptsToLiterals(ActResponseMessage message) {
 		List<Structure> percepts = new ArrayList<Structure>();
-		for (Map.Entry<String, List<String>> messagePercept : message.getPercepts().entrySet()) {
-			Structure percept = new Structure(messagePercept.getKey());
-			for (String term : messagePercept.getValue()) {
+		for (Percept messagePercept : message.getPercepts()) {
+			Structure percept = new Structure(messagePercept.getPercept());
+			for (String term : messagePercept.getPerceptValues()) {
 				percept.addTerm(new Atom(term));
 			}
 			percepts.add(percept);
