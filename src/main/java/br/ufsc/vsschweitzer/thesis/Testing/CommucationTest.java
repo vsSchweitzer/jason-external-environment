@@ -1,4 +1,4 @@
-package br.ufsc.vsschweitzer.thesis.Testing;
+package br.ufsc.vsschweitzer.thesis.testing;
 
 import java.util.ArrayList;
 import java.util.Scanner;
