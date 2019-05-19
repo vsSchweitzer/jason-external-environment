@@ -1,55 +1,37 @@
 package br.ufsc.vsschweitzer.thesis.testing;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.List;
 
-import br.ufsc.vsschweitzer.thesis.configuration.ConfigurationReader;
-import br.ufsc.vsschweitzer.thesis.configuration.EnvironmentConfiguration;
-import br.ufsc.vsschweitzer.thesis.messaging.AgentMessageInterpreter;
-import br.ufsc.vsschweitzer.thesis.messaging.Messenger;
-import br.ufsc.vsschweitzer.thesis.messaging.message.ActMessage;
-import br.ufsc.vsschweitzer.thesis.messaging.message.ActResponseMessage;
+import br.ufsc.vsschweitzer.thesis.environment.ExternalEnvironment;
+import jason.asSyntax.Structure;
+import jason.asSyntax.Term;
 
 public class CommucationTest {
 
 	static String ip = "127.0.0.1";
 	static int port = 10000;
 
+	static String testAgentName = "Ag1";
+
 	public static void main(String args[]) throws Exception {
-		ArrayList<String> x = new ArrayList<String>();
-		x.add("1");
-		x.add("2");
-		x.add("3");
-		System.out.println(AgentMessageInterpreter.messageToJson(new ActMessage("ag1", "run", x)));
-		//System.out.println(AgentMessageInterpreter.messageToJson(new ActResponseMessage()));
-		
-/*
-		EnvironmentConfiguration conf = ConfigurationReader.getConfiguration();
 
-		Scanner scanner = new Scanner(System.in);
+		ExternalEnvironment env = ExternalEnvironment.getInstance();
 
-		scanner.nextLine();
-		Messenger messenger = new Messenger(ip, port);
-		System.out.println("Messenger criado");
+		Structure action = new Structure("VoidPublic");
+		List<Structure> percepts = env.act(testAgentName, action);
+		printReceivedMessage(percepts);
+	}
 
-		scanner.nextLine();
-		messenger.open();
-		System.out.println("Messenger aberto");
-
-		String msg = scanner.nextLine();
-		messenger.send(msg);
-		System.out.println("Mensagem enviada");
-
-		scanner.nextLine();
-		String receivedMsg = messenger.listen();
-		System.out.println("Messenger recebida: " + receivedMsg);
-
-		scanner.nextLine();
-		messenger.close();
-		System.out.println("Messenger fechado");
-
-		scanner.close();
-		*/
+	public static void printReceivedMessage(List<Structure> percepts) {
+		System.out.println("Percepts:");
+		for (Structure percept : percepts) {
+			String toPrint = "    " + percept.getFunctor() + ": [";
+			for (Term term : percept.getTerms()) {
+				toPrint += term + ",";
+			}
+			toPrint = toPrint.substring(-1);
+			toPrint += " ]";
+		}
 	}
 
 }
