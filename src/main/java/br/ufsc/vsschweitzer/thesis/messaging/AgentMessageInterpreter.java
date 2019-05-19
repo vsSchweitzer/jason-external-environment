@@ -35,8 +35,10 @@ public class AgentMessageInterpreter {
 
 	public static ActMessage wrapAct(String agent, Structure action) {
 		List<String> passedParameters = new ArrayList<String>();
-		for (Term term : action.getTerms()) {
-			passedParameters.add(term.toString());
+		if (action.getTerms() != null) {
+			for (Term term : action.getTerms()) {
+				passedParameters.add(term.toString());
+			}
 		}
 		ActMessage actMessage = new ActMessage(agent, action.getFunctor(), passedParameters);
 
