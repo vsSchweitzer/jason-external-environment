@@ -1,4 +1,4 @@
-package br.ufsc.vsschweitzer.thesis.testing;
+package br.ufsc.vsschweitzer.thesis.tests;
 
 import java.util.List;
 
