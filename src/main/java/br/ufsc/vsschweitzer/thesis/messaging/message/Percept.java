@@ -7,8 +7,9 @@ public class Percept {
 	String percept;
 	List<String> perceptValues;
 	
+	public Percept() {}
+	
 	public Percept(String percept, List<String> perceptValues) {
-		super();
 		setPercept(percept);
 		setPerceptValues(perceptValues);
 	}

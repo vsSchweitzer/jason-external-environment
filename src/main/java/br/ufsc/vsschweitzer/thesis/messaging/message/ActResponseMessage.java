@@ -7,6 +7,10 @@ public class ActResponseMessage extends BaseMessage {
 	ActResponseStatus status;
 	List<Percept> percepts;
 	
+	public ActResponseMessage() {
+		super(MessageType.ACT_RESPONSE);
+	}
+	
 	public ActResponseMessage(ActResponseStatus status, List<Percept> percepts) {
 		super(MessageType.ACT_RESPONSE);
 		setStatus(status);

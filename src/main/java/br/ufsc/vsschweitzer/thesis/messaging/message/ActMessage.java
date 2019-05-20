@@ -7,6 +7,10 @@ public class ActMessage extends BaseMessage {
 	String agent;
 	String action;
 	List<String> parameters;
+	
+	public ActMessage() {
+		super(MessageType.ACT);
+	}
 
 	public ActMessage(String agent, String action, List<String> parameters) {
 		super(MessageType.ACT);
