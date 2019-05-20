@@ -30,18 +30,18 @@ public class CommucationTest {
 		percepts = env.act(testAgentName, action);
 		printReceivedMessage(percepts);
 		
+		action = new Structure("Parameterized");
+		action.addTerm(new VarTerm("A"));
+		action.addTerm(new VarTerm("B"));
+		action.addTerm(new VarTerm("3"));
+		percepts = env.act(testAgentName, action);
+		printReceivedMessage(percepts);
+		
 		action = new Structure("TenSecondsWait");
 		percepts = env.act(testAgentName, action);
 		printReceivedMessage(percepts);
 		
 		action = new Structure("MultipleTenSecondsWait");
-		percepts = env.act(testAgentName, action);
-		printReceivedMessage(percepts);
-		
-		action = new Structure("Parameterized");
-		action.addTerm(new VarTerm("A"));
-		action.addTerm(new VarTerm("B"));
-		action.addTerm(new VarTerm("10"));
 		percepts = env.act(testAgentName, action);
 		printReceivedMessage(percepts);
 	}
