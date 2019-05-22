@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.logging.*;
 
 import br.ufsc.vsschweitzer.thesis.environment.exceptions.FailedActionException;
+import br.ufsc.vsschweitzer.thesis.messaging.messages.Percept;
 
 public class SimpleEnvironment extends Environment {
 
@@ -24,9 +25,16 @@ public class SimpleEnvironment extends Environment {
 	public boolean executeAction(String agName, Structure action) {
 		logger.info(agName + " executing: " + action);
 		try {
-			List<Structure> percepts = extEnvironment.act(agName, action);
-			for (Structure percept: percepts) {
-				addPercept(agName, percept);
+			List<Percept> percepts = extEnvironment.act(agName, action);
+			for (Percept percept: percepts) {
+				switch (percept.getAction()) {
+					case ADD:
+						addPercept(agName, percept.asLiteral());
+						break;
+					case REMOVE:
+						removePercept(agName, percept.asLiteral());
+						break;
+				}
 			}
 			logger.info("[SUCCESS] " + agName + " executed " + action);
 			return true;

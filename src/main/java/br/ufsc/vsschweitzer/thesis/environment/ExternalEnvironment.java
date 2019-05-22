@@ -11,6 +11,7 @@ import br.ufsc.vsschweitzer.thesis.messaging.AgentMessageInterpreter;
 import br.ufsc.vsschweitzer.thesis.messaging.Messenger;
 import br.ufsc.vsschweitzer.thesis.messaging.messages.ActMessage;
 import br.ufsc.vsschweitzer.thesis.messaging.messages.ActResponseMessage;
+import br.ufsc.vsschweitzer.thesis.messaging.messages.Percept;
 import jason.asSyntax.Structure;
 
 public class ExternalEnvironment {
@@ -33,7 +34,7 @@ public class ExternalEnvironment {
 		configuration = ConfigurationReader.getConfiguration();
 	}
 	
-	public List<Structure> act(String agent, Structure action) throws FailedActionException {
+	public List<Percept> act(String agent, Structure action) throws FailedActionException {
 		Messenger messenger = new Messenger(configuration.getIpAddress(), configuration.getPort());
 		try {
 			ActMessage message = AgentMessageInterpreter.wrapAct(agent, action);
@@ -43,8 +44,7 @@ public class ExternalEnvironment {
 			messenger.send(messageAsJson);
 			String response = messenger.listen();
 			ActResponseMessage responseMsg = (ActResponseMessage) AgentMessageInterpreter.interpretJsonMessage(response);
-			// TODO determinar o que fazer com o status da mensagem de resposta.
-			return AgentMessageInterpreter.responsePerceptsToLiterals(responseMsg);
+			return responseMsg.getPercepts();
 		} catch (IOException | ConnectionNotOpenException e) {
 			throw new FailedActionException(e);
 		} finally {
