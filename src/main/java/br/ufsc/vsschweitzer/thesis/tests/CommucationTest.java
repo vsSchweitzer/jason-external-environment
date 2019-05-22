@@ -3,6 +3,7 @@ package br.ufsc.vsschweitzer.thesis.tests;
 import java.util.List;
 
 import br.ufsc.vsschweitzer.thesis.environment.ExternalEnvironment;
+import br.ufsc.vsschweitzer.thesis.messaging.messages.Percept;
 import jason.asSyntax.Structure;
 import jason.asSyntax.Term;
 import jason.asSyntax.VarTerm;
@@ -19,7 +20,7 @@ public class CommucationTest {
 		ExternalEnvironment env = ExternalEnvironment.getInstance();
 
 		Structure action = new Structure("VoidPublic");
-		List<Structure> percepts = env.act(testAgentName, action);
+		List<Percept> percepts = env.act(testAgentName, action);
 		printReceivedMessage(percepts);
 		
 		action = new Structure("VoidPrivate");
@@ -46,12 +47,12 @@ public class CommucationTest {
 		printReceivedMessage(percepts);
 	}
 
-	public static void printReceivedMessage(List<Structure> percepts) {
+	public static void printReceivedMessage(List<Percept> percepts) {
 		System.out.println("Percepts : {");
-		for (Structure percept : percepts) {
-			String toPrint = "    " + percept.getFunctor() + ": [";
-			if (percept.getTerms() != null) {
-				for (Term term : percept.getTerms()) {
+		for (Percept percept : percepts) {
+			String toPrint = "    " + percept.getAction().toString() + " " + percept.getPercept() + ": [";
+			if (percept.getPerceptValues() != null) {
+				for (String term : percept.getPerceptValues()) {
 					toPrint += term + ", ";
 				}
 				toPrint = toPrint.substring(0, toPrint.length() - 2);
