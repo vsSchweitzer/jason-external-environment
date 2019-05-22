@@ -1,5 +1,6 @@
 package br.ufsc.vsschweitzer.thesis.messaging.messages.enums;
 
+import br.ufsc.vsschweitzer.thesis.messaging.messages.ActMessage;
 import br.ufsc.vsschweitzer.thesis.messaging.messages.ActResponseMessage;
 import br.ufsc.vsschweitzer.thesis.messaging.messages.BaseMessage;
 

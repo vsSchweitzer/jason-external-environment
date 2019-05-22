@@ -7,10 +7,10 @@ import java.util.List;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
+import br.ufsc.vsschweitzer.thesis.messaging.messages.ActMessage;
 import br.ufsc.vsschweitzer.thesis.messaging.messages.ActResponseMessage;
 import br.ufsc.vsschweitzer.thesis.messaging.messages.BaseMessage;
 import br.ufsc.vsschweitzer.thesis.messaging.messages.Percept;
-import br.ufsc.vsschweitzer.thesis.messaging.messages.enums.ActMessage;
 import br.ufsc.vsschweitzer.thesis.messaging.messages.enums.MessageType;
 import jason.asSyntax.Atom;
 import jason.asSyntax.Structure;
