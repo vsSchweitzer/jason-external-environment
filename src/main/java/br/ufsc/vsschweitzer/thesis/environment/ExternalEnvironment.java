@@ -9,8 +9,8 @@ import br.ufsc.vsschweitzer.thesis.environment.exceptions.FailedActionException;
 import br.ufsc.vsschweitzer.thesis.exceptions.ConnectionNotOpenException;
 import br.ufsc.vsschweitzer.thesis.messaging.AgentMessageInterpreter;
 import br.ufsc.vsschweitzer.thesis.messaging.Messenger;
-import br.ufsc.vsschweitzer.thesis.messaging.message.ActMessage;
-import br.ufsc.vsschweitzer.thesis.messaging.message.ActResponseMessage;
+import br.ufsc.vsschweitzer.thesis.messaging.messages.ActResponseMessage;
+import br.ufsc.vsschweitzer.thesis.messaging.messages.enums.ActMessage;
 import jason.asSyntax.Structure;
 
 public class ExternalEnvironment {

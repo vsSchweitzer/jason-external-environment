@@ -1,4 +1,6 @@
-package br.ufsc.vsschweitzer.thesis.messaging.message;
+package br.ufsc.vsschweitzer.thesis.messaging.messages;
+
+import br.ufsc.vsschweitzer.thesis.messaging.messages.enums.MessageType;
 
 public abstract class BaseMessage {
 	

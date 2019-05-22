@@ -1,4 +1,7 @@
-package br.ufsc.vsschweitzer.thesis.messaging.message;
+package br.ufsc.vsschweitzer.thesis.messaging.messages.enums;
+
+import br.ufsc.vsschweitzer.thesis.messaging.messages.ActResponseMessage;
+import br.ufsc.vsschweitzer.thesis.messaging.messages.BaseMessage;
 
 public enum MessageType {
 	ACT(ActMessage.class),

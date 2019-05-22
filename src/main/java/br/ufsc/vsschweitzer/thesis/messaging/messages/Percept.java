@@ -1,4 +1,4 @@
-package br.ufsc.vsschweitzer.thesis.messaging.message;
+package br.ufsc.vsschweitzer.thesis.messaging.messages;
 
 import java.util.List;
 

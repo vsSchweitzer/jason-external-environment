@@ -1,6 +1,8 @@
-package br.ufsc.vsschweitzer.thesis.messaging.message;
+package br.ufsc.vsschweitzer.thesis.messaging.messages;
 
 import java.util.List;
+
+import br.ufsc.vsschweitzer.thesis.messaging.messages.enums.MessageType;
 
 public class ActResponseMessage extends BaseMessage {
 
