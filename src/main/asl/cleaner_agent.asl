@@ -1,11 +1,32 @@
-// Agent sample_agent in project tcpagent
+// It starts believing that it does not carry any trash
+~carryingTrash.
 
-/* Initial beliefs and rules */
+// It starts wanting to know the location of the trash can
+!findTrashCan.
 
-/* Initial goals */
+// Whenever it believes there is trash at (X, Y), it will desire to clean (X, Y)
++trash(X,Y) <-
+	!clean(X,Y).
 
-!start.
+// Whenever it believes that it is carrying trash, it will desire to dispose of it
++carryingTrash <-
+	!dispose.
 
-/* Plans */
+// Plan to pickup trash
++!findTrashCan : ~trashCan(_,_) <-
+	locateTrashCan.
 
-+!start : true <- .print("hello world.").
+// Plan to pickup trash
++!clean(X,Y) : ~carryingTrash <-
+	moveTo(X,Y);
+	pickupTrashAt(X,Y).
+
+// Plan to dispose of trash
++!dispose : carryingTrash & trashCan(X,Y) <-
+	moveTo(X,Y);
+	disposeTrash.
+	
+// Plan to find the trash can
++!findTrashCan : not trash(_,_) <-
+	scanSurroundings;
+	!findTrashCan.
