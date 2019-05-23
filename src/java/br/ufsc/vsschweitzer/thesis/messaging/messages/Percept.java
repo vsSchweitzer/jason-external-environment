@@ -1,10 +1,10 @@
 package br.ufsc.vsschweitzer.thesis.messaging.messages;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import br.ufsc.vsschweitzer.thesis.messaging.messages.enums.PerceptAction;
-import jason.asSyntax.Atom;
-import jason.asSyntax.Structure;
+import jason.asSyntax.Literal;
 
 public class Percept {
 	
@@ -44,12 +44,15 @@ public class Percept {
 		this.action = action;
 	}
 	
-	public Structure asLiteral() {
-		Structure percept = new Structure(getPercept());
-		for (String term : getPerceptValues()) {
-			percept.addTerm(new Atom(term));
+	public Literal asLiteral() {
+		String literalToParse = getPercept();
+		if (getPerceptValues() != null
+				&& getPerceptValues().size() > 0) {
+			literalToParse += getPerceptValues().stream()
+								.map(n -> String.valueOf(n))
+								.collect(Collectors.joining(",", "(", ")"));
 		}
-		return percept;
+		return Literal.parseLiteral(literalToParse);
 	}
 	
 }

@@ -8,7 +8,7 @@ import br.ufsc.vsschweitzer.thesis.configuration.exceptions.MalformedConfigurati
 
 public class EnvironmentConfiguration {
 
-	private static final String DEFAULT_IP_ADDRESS = "localhost";
+	private static final String DEFAULT_IP_ADDRESS = "127.0.0.1";
 	private static final String DEFAULT_PORT = "12345";
 	private static final String IP_ADDRESS_REGEX = "\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}";
 	private static final String PORT_REGEX = "\\d{1,5}";

@@ -5,8 +5,8 @@ MAS tcpagent {
 	environment: SimpleEnvironment
 
 	agents:
-		cleaner_agent cleaner1;
-
+		cleaner1 cleaner_agent;
+		
 	aslSourcePath:
-		"src/main/asl";
+		"src/asl";
 }

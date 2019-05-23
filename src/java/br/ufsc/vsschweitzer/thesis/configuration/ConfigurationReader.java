@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ConfigurationReader {
 
-	private static final String CONFIGURATION_FILE_PATH = "./src/main/resources";
+	private static final String CONFIGURATION_FILE_PATH = "./src/resources";
 	private static final String CONFIGURATION_FILE_NAME = "configurations.json";
 
 	private static final ObjectMapper mapper = new ObjectMapper();
