@@ -22,25 +22,7 @@ public class SimpleEnvironment extends Environment {
 	}
 
 	@Override
-	public boolean executeAction(String agName, Structure action) {
-		if (action.getFunctor().equals("add_belief")) {
-			List<Term> params = action.getTerms();
-			if (params.size() == 1) {
-				addPercept(agName, Literal.parseLiteral(params.get(0).toString()));
-				return true;
-			} else {
-				return false;
-			}
-		} else if (action.getFunctor().equals("drop_belief")) {
-			List<Term> params = action.getTerms();
-			if (params.size() == 1) {
-				removePercept(agName, Literal.parseLiteral(params.get(0).toString()));
-				return true;
-			} else {
-				return false;
-			}
-		}
-		
+	public boolean executeAction(String agName, Structure action) {		
 		logger.info("Agent " + agName + " executing: " + action);
 		try {
 			List<Percept> percepts = extEnvironment.act(agName, action);

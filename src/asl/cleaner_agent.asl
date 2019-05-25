@@ -3,7 +3,7 @@
 !findTrash.
 
 // Whenever it believes there is trash at (X, Y), it will desire to clean (X, Y)
-+trash(X,Y) <-
++trash(X,Y) : not .desire(clean(_,_)) <-
 	!clean(X,Y).
 
 // Whenever it believes that it is carrying trash, it will desire to dispose of it
@@ -16,19 +16,20 @@
 	
 // Plan to pickup trash
 +!clean(X,Y) : not carryingTrash & not busy <-
-	add_belief(busy);
 	moveTo(X,Y);
-	pickupTrashAt(X,Y);
-	drop_belief(busy).
+	pickupTrashAt(X,Y).
 
 // Plan to dispose of trash
 +!dispose : carryingTrash & trashCan(X,Y) & not busy <-
-	add_belief(busy);
 	moveTo(X,Y);
 	disposeTrash;
-	drop_belief(busy).
+	!findTrash.
 
 // Plan to find trash
++!findTrash : trash(X,Y) <-
+	!clean(X,Y).
 +!findTrash : not trash(_,_) <-
 	scanSurroundings;
+	?not trash(_,_);
 	!findTrash.
+	
