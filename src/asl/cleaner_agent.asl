@@ -2,10 +2,6 @@
 !findTrashCan.
 !findTrash.
 
-// Whenever it believes there is trash at (X, Y), it will desire to clean (X, Y)
-+trash(X,Y) : not .desire(clean(_,_)) <-
-	!clean(X,Y).
-
 // Whenever it believes that it is carrying trash, it will desire to dispose of it
 +carryingTrash <-
 	!dispose.
@@ -15,12 +11,17 @@
 	locateTrashCan.
 	
 // Plan to pickup trash
-+!clean(X,Y) : not carryingTrash & not busy <-
++!clean(X,Y) : not carryingTrash <-
 	moveTo(X,Y);
-	pickupTrashAt(X,Y).
+	pickupTrashAt(X,Y);
+	if (carryingTrash) {
+		.broadcast(achieve, forget(X,Y))
+	} else {
+		!findTrash
+	}.
 
 // Plan to dispose of trash
-+!dispose : carryingTrash & trashCan(X,Y) & not busy <-
++!dispose : carryingTrash & trashCan(X,Y) <-
 	moveTo(X,Y);
 	disposeTrash;
 	!findTrash.
@@ -30,6 +31,8 @@
 	!clean(X,Y).
 +!findTrash : not trash(_,_) <-
 	scanSurroundings;
-	?not trash(_,_);
 	!findTrash.
-	
+
+// Plan to forget a trash because another agent already cleaned it
++!forget(X,Y) <-
+	-trash(X,Y).
