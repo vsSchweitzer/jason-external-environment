@@ -68,9 +68,8 @@ public class Messenger implements Closeable {
 	public String listen() throws ConnectionNotOpenException, IOException {
 		if (isOpen) {
 			InputStream input = socket.getInputStream();
-
-			// byte[] receivedBytes = new byte[1024];
-			// input.read(receivedBytes);
+			
+			// Blocks thread until end of stream
 			byte[] receivedBytes = input.readAllBytes();
 			String receivedMsg = new String(receivedBytes);
 

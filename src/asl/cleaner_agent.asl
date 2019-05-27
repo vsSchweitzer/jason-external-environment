@@ -9,14 +9,17 @@
 // Plan to find the trash can
 +!findTrashCan <-
 	locateTrashCan.
+
+// Plan to forget a trash because another agent already cleaned it
++!forget(X,Y) <-
+	-trash(X,Y).
 	
 // Plan to pickup trash
 +!clean(X,Y) : not carryingTrash <-
+	.broadcast(achieve, forget(X,Y));
 	moveTo(X,Y);
 	pickupTrashAt(X,Y);
-	if (carryingTrash) {
-		.broadcast(achieve, forget(X,Y))
-	} else {
+	if (not carryingTrash) {
 		!findTrash
 	}.
 
@@ -32,7 +35,3 @@
 +!findTrash : not trash(_,_) <-
 	scanSurroundings;
 	!findTrash.
-
-// Plan to forget a trash because another agent already cleaned it
-+!forget(X,Y) <-
-	-trash(X,Y).
