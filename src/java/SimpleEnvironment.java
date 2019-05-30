@@ -32,7 +32,7 @@ public class SimpleEnvironment extends Environment {
 						addPercept(agName, percept.asLiteral());
 						break;
 					case REMOVE:
-						removePercept(agName, percept.asLiteral());
+						removePerceptsByUnif(agName, percept.asLiteral());
 						break;
 				}
 			}
