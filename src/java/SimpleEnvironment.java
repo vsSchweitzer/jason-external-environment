@@ -26,21 +26,25 @@ public class SimpleEnvironment extends Environment {
 		logger.info("Agent " + agName + " executing: " + action);
 		try {
 			List<Percept> percepts = extEnvironment.act(agName, action);
-			for (Percept percept: percepts) {
-				switch (percept.getAction()) {
-					case ADD:
-						addPercept(agName, percept.asLiteral());
-						break;
-					case REMOVE:
-						removePerceptsByUnif(agName, percept.asLiteral());
-						break;
-				}
-			}
+			updatePercepts(agName, percepts);
 			logger.info("[SUCCESS] " + agName + " executed " + action);
 			return true;
 		} catch (FailedActionException e) {
 			logger.info(" [FAILED] " + agName + " failed to execute " + action);
 			return false;
+		}
+	}
+	
+	private void updatePercepts(String agName, List<Percept> percepts) {
+		for (Percept percept: percepts) {
+			switch (percept.getAction()) {
+				case ADD:
+					addPercept(agName, percept.asLiteral());
+					break;
+				case REMOVE:
+					removePerceptsByUnif(agName, percept.asLiteral());
+					break;
+			}
 		}
 	}
 
