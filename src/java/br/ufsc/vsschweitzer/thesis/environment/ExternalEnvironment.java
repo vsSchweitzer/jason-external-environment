@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.ufsc.vsschweitzer.thesis.configuration.ConfigurationReader;
 import br.ufsc.vsschweitzer.thesis.configuration.EnvironmentConfiguration;
+import br.ufsc.vsschweitzer.thesis.configuration.exceptions.MalformedConfigurationsException;
 import br.ufsc.vsschweitzer.thesis.environment.exceptions.FailedActionException;
 import br.ufsc.vsschweitzer.thesis.exceptions.ConnectionNotOpenException;
 import br.ufsc.vsschweitzer.thesis.messaging.AgentMessageInterpreter;
@@ -16,22 +17,10 @@ import jason.asSyntax.Structure;
 
 public class ExternalEnvironment {
 	
-	private ExternalEnvironment() {}
+	private EnvironmentConfiguration configuration;
 	
-	private static ExternalEnvironment instance;
-	
-	private static EnvironmentConfiguration configuration;
-
-	public static ExternalEnvironment getInstance() {
-		if (instance == null) {
-			initializeInstance();
-		}
-		return instance;
-	}
-
-	private static void initializeInstance() {
-		instance = new ExternalEnvironment();
-		configuration = ConfigurationReader.getConfiguration();
+	public ExternalEnvironment(String ipAddress, String port) throws MalformedConfigurationsException {
+		configuration = new EnvironmentConfiguration(ipAddress, port);
 	}
 	
 	public List<Percept> act(String agent, Structure action) throws FailedActionException {

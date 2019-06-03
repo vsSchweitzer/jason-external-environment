@@ -9,10 +9,6 @@
 // Plan to find the trash can
 +!findTrashCan <-
 	locateTrashCan.
-
-// Plan to forget a trash because another agent already cleaned it
-+!forget(X,Y) <-
-	-trash(X,Y).
 	
 // Plan to pickup trash
 +!clean(X,Y) : not carryingTrash <-
@@ -22,6 +18,10 @@
 	if (not carryingTrash) {
 		!findTrash
 	}.
+
+// Plan to forget a trash because another agent already cleaned it
++!forget(X,Y) <-
+	.abolish(trash(X,Y)).
 
 // Plan to dispose of trash
 +!dispose : carryingTrash & trashCan(X,Y) <-
