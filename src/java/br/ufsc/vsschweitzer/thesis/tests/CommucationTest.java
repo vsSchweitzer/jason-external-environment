@@ -5,7 +5,6 @@ import java.util.List;
 import br.ufsc.vsschweitzer.thesis.environment.ExternalEnvironment;
 import br.ufsc.vsschweitzer.thesis.messaging.messages.Percept;
 import jason.asSyntax.Structure;
-import jason.asSyntax.Term;
 import jason.asSyntax.VarTerm;
 
 public class CommucationTest {
@@ -17,7 +16,7 @@ public class CommucationTest {
 
 	public static void main(String args[]) throws Exception {
 
-		ExternalEnvironment env = ExternalEnvironment.getInstance();
+		ExternalEnvironment env = new ExternalEnvironment(ip, String.valueOf(port));
 
 		Structure action = new Structure("VoidPublic");
 		List<Percept> percepts = env.act(testAgentName, action);

@@ -2,11 +2,11 @@ MAS tcpagent {
 
 	infrastructure: Centralised
 
-	environment: SimpleEnvironment
+	environment: SimpleEnvironment("127.0.0.1", 10000, 10)
 
 	agents:
-		cleaner_agent cleaner1;
-
+		cleaner cleaner_agent agentClass CleaningAgent #10;
+		
 	aslSourcePath:
-		"src/main/asl";
+		"src/asl";
 }
