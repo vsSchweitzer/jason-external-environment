@@ -1,8 +1,5 @@
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Queue;
-import java.util.Random;
-
 import jason.asSemantics.Agent;
 import jason.asSemantics.Event;
 import jason.asSyntax.Trigger;

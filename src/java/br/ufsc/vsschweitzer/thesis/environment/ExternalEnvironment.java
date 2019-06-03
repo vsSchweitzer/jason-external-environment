@@ -3,7 +3,6 @@ package br.ufsc.vsschweitzer.thesis.environment;
 import java.io.IOException;
 import java.util.List;
 
-import br.ufsc.vsschweitzer.thesis.configuration.ConfigurationReader;
 import br.ufsc.vsschweitzer.thesis.configuration.EnvironmentConfiguration;
 import br.ufsc.vsschweitzer.thesis.configuration.exceptions.MalformedConfigurationsException;
 import br.ufsc.vsschweitzer.thesis.environment.exceptions.FailedActionException;
