@@ -25,7 +25,6 @@ public class SimpleEnvironment extends Environment {
 	 */
 	@Override
 	public void init(String[] args) {
-		System.out.println(args[0] + ":" + args[1]);
 		try {
 			extEnvironment = new ExternalEnvironment(args[0], args[1]);
 		    executor = Executors.newFixedThreadPool(Integer.parseInt(args[2]));
